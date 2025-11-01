@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Criar Post - Blog{% endblock %}
+
+{% block content %}
+<h1>Criar Novo Post</h1>
+
+<form method="POST" style="max-width: 600px;">
+    <div style="margin-bottom: 15px;">
+        <label for="title">Título:</label><br>
+        <input type="text" id="title" name="title" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="content">Conteúdo:</label><br>
+        <textarea id="content" name="content" required rows="10" style="width: 100%; padding: 8px;"></textarea>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="author_name">Nome do Autor:</label><br>
+        <input type="text" id="author_name" name="author_name" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="author_email">Email do Autor:</label><br>
+        <input type="email" id="author_email" name="author_email" required style="width: 100%; padding: 8px;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="category">Categoria:</label><br>
+        <select id="category" name="category" style="width: 100%; padding: 8px;">
+            <option value="Geral">Geral</option>
+            {% for category in categories %}
+                <option value="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn">Criar Post</button>
+    <a href="{{ url_for('index') }}" class="btn" style="background: #95a5a6;">Cancelar</a>
+</form>
+{% endblock %}
